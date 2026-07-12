@@ -13,3 +13,8 @@ Extension setup instructions:
 4. Click "Load unpacked" and navigate to this folder, then click on the "breadcrumbz" folder and import that (NOT "breadcrumbz_v1.1").
 5. Pin the breadcrumbz extension icon to the taskbar (puzzle icon in the top right -> pin breadcrumbz)
 6. Click the icon and enjoy! Websites you visit will be scraped and logged, so visit a couple of websites, remember the gist of them, and try to describe them in the search bar! I.E "A website that had people arguing about which soccer player was better - Messi or Ronaldo" For the best results, try to describe the website in a lot of detail, or don't, if you want to see how good our system is ;)
+
+Built by team Sourbroughs
+Ryan Lee
+Andriy Savinov
+Sebastian Caraza Gonzalez
