@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "breadcrumbz",
+  "version": "1.0",
+  "description": "Saves the visible text of every page you visit to a local search server. Frontend extension for the breadcrumbz collaborative project.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>", "http://emote-galore-panther.ngrok-free.dev"],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

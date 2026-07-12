@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Breadcrumbz - Blacklist</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --crust: #a94e1f;
+    --crust-soft: #c9793f;
+    --cream: #fff3dc;
+    --bg: #fae9d0;
+  }
+
+  html, body {
+    width: 380px;
+    height: 410px;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE",
+                 "Comic Neue", cursive, sans-serif;
+    color: var(--crust);
+  }
+
+  .page { display: flex; flex-direction: column; height: 100%; padding: 14px; }
+
+  .top {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
+    flex-shrink: 0;
+  }
+  #back {
+    font-family: inherit; font-weight: bold; font-size: 12px;
+    color: var(--crust); background: var(--cream);
+    border: 2px solid var(--crust); border-radius: 999px;
+    padding: 4px 12px; cursor: pointer;
+  }
+  #back:hover { background: #fff; }
+  h1 { font-size: 18px; color: var(--crust); }
+
+  .hint { font-size: 10.5px; color: var(--crust-soft); margin-bottom: 10px; flex-shrink: 0; }
+
+  .searchwrap { position: relative; flex-shrink: 0; }
+  #blkInput {
+    width: 100%;
+    padding: 9px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--crust);
+    background: #fff;
+    border: 2px solid var(--crust);
+    border-radius: 999px;
+    outline: none;
+  }
+  #blkInput::placeholder { color: var(--crust-soft); }
+  #blkInput:focus { box-shadow: 0 0 0 3px rgba(169, 78, 31, 0.18); }
+
+  /* autocomplete dropdown */
+  #suggestions {
+    position: absolute; left: 8px; right: 8px; top: 100%;
+    background: #fff; border: 2px solid var(--crust); border-top: none;
+    border-radius: 0 0 12px 12px;
+    list-style: none; max-height: 150px; overflow-y: auto;
+    z-index: 10;
+    display: none;
+  }
+  #suggestions.open { display: block; }
+  #suggestions li {
+    padding: 6px 12px; font-size: 12.5px; cursor: pointer;
+    border-bottom: 1px solid rgba(169,78,31,0.12);
+  }
+  #suggestions li:last-child { border-bottom: none; }
+  #suggestions li:hover, #suggestions li.active { background: var(--cream); }
+  #suggestions mark {
+    background: #ffd54d; color: inherit; border-radius: 2px; padding: 0 1px;
+  }
+  #suggestions .addRaw { color: var(--crust-soft); font-style: italic; }
+
+  /* blacklist entries */
+  #blkList { list-style: none; margin-top: 12px; overflow-y: auto; flex: 1; }
+  #blkList li {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 12px;
+    background: #fff;
+    border: 1px solid rgba(169, 78, 31, 0.3);
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--crust);
+  }
+  #blkList li.empty {
+    justify-content: center; font-weight: normal; font-size: 11.5px;
+    color: var(--crust-soft); border-style: dashed; background: rgba(255,255,255,0.6);
+  }
+  #blkList button.rm {
+    font-family: inherit; font-weight: bold; font-size: 13px; line-height: 1;
+    color: #c0392b; background: none; border: none; cursor: pointer;
+    padding: 2px 6px; border-radius: 6px;
+  }
+  #blkList button.rm:hover { background: #fdecea; }
+
+  #blkList::-webkit-scrollbar, #suggestions::-webkit-scrollbar { width: 6px; }
+  #blkList::-webkit-scrollbar-thumb, #suggestions::-webkit-scrollbar-thumb {
+    background: rgba(169, 78, 31, 0.35); border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="top">
+      <button id="back">&larr; back</button>
+      <h1>blacklist</h1>
+    </div>
+    <div class="hint">sites here are never scraped or sent to the server - use for banking, health, anything sensitive</div>
+
+    <div class="searchwrap">
+      <input type="search" id="blkInput" placeholder="Type a site (e.g. capital...)..." autocomplete="off" autofocus>
+      <ul id="suggestions"></ul>
+    </div>
+
+    <ul id="blkList"></ul>
+  </div>
+
+  <script src="blacklist.js"></script>
+</body>
+</html>

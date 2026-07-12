@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Breadcrumbz</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --crust: #a94e1f;
+    --crust-soft: #c9793f;
+    --link: #1a5fb4;
+    --card: #ffffff;
+
+    --toast-w: 150%;
+    --toast-h: 153%;
+    --toast-x: 34%;
+    --toast-y: 50%;
+
+    --title-x: 24%;
+    --title-y: 8%;
+    --title-size: 32px;
+
+    --toggle-x: 30.5%;
+    --toggle-y: 20%;
+    --toggle-scale: 1.95;
+
+    --search-x: 14.5%;
+    --search-y: 31%;
+    --search-w: 71.5%;
+    --search-size: 18px;
+
+    --results-x: 17%;
+    --results-y: 46%;
+    --results-w: 61%;
+    --results-h: 49%;
+    --results-size: 12px;
+  }
+
+  html, body {
+    width: 380px;
+    height: 410px;
+    overflow: hidden;
+    font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE",
+                 "Comic Neue", cursive, sans-serif;
+    color: var(--crust);
+  }
+
+  .app {
+    position: fixed;
+    inset: 0;
+    background-image: url("toast_bg.png");
+    background-size: var(--toast-w) var(--toast-h);
+    background-position: var(--toast-x) var(--toast-y);
+    background-repeat: no-repeat;
+    background-color: #fae9d0;
+    overflow: hidden;
+  }
+
+  .brand {
+    position: fixed;
+    left: var(--title-x);
+    top: var(--title-y);
+    font-size: var(--title-size);
+    font-weight: bold;
+    color: var(--crust);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  .tracking-toggle {
+    position: fixed;
+    left: var(--toggle-x);
+    top: var(--toggle-y);
+    transform: scale(var(--toggle-scale));
+    transform-origin: left top;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--crust-soft);
+    white-space: nowrap;
+  }
+  .switch { position: relative; display: inline-block; width: 32px; height: 17px; }
+  .switch input { display: none; }
+  .slider {
+    position: absolute; inset: 0; background: #cba87f;
+    border-radius: 999px; transition: 0.25s; cursor: pointer;
+  }
+  .slider::before {
+    content: ""; position: absolute; width: 11px; height: 11px;
+    left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: 0.25s;
+  }
+  .switch input:checked + .slider { background: #4CAF50; }
+  .switch input:checked + .slider::before { transform: translateX(15px); }
+
+  input[type="search"] {
+    position: fixed;
+    left: var(--search-x);
+    top: var(--search-y);
+    width: var(--search-w);
+    font-size: var(--search-size);
+    padding: 0.7em 1.1em;
+    font-family: inherit;
+    color: var(--crust);
+    background: #fff;
+    border: 2px solid var(--crust);
+    border-radius: 999px;
+    outline: none;
+  }
+  input[type="search"]::placeholder { color: var(--crust-soft); }
+  input[type="search"]:focus { box-shadow: 0 0 0 3px rgba(169, 78, 31, 0.18); }
+
+  #results {
+    position: fixed;
+    left: var(--results-x);
+    top: var(--results-y);
+    width: var(--results-w);
+    height: var(--results-h);
+    font-size: var(--results-size);
+    list-style: none;
+    overflow-y: auto;
+    padding-right: 2px;
+  }
+  #results li {
+    padding: 0.55em 0.75em;
+    background: var(--card);
+    border: 1px solid rgba(169, 78, 31, 0.25);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    box-shadow: 0 1px 2px rgba(120, 60, 20, 0.08);
+  }
+  #results li.info {
+    color: var(--crust-soft);
+    text-align: center;
+    border-style: dashed;
+    background: rgba(255,255,255,0.7);
+  }
+  #results a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #results a:hover { text-decoration: underline; }
+  #results .meta { display: flex; align-items: center; gap: 6px; font-size: 0.9em; }
+  #results .conf { font-weight: bold; }
+  #results .hits { color: var(--crust-soft); }
+
+  #results::-webkit-scrollbar { width: 6px; }
+  #results::-webkit-scrollbar-thumb { background: rgba(169, 78, 31, 0.35); border-radius: 8px; }
+  #results::-webkit-scrollbar-track { background: transparent; }
+
+  #blkBtn {
+    position: fixed;
+    right: 12%;
+    bottom: 6%;
+    z-index: 50;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 11px;
+    color: var(--crust);
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--crust);
+    border-radius: 999px;
+    padding: 4px 12px;
+    cursor: pointer;
+  }
+  #blkBtn:hover { background: #fff; box-shadow: 0 0 0 3px rgba(169, 78, 31, 0.15); }
+</style>
+</head>
+<body>
+  <div class="app"></div>
+
+  <span class="brand">breadcrumbz</span>
+
+  <label class="tracking-toggle">
+    <span class="switch">
+      <input type="checkbox" id="trackToggle">
+      <span class="slider"></span>
+    </span>
+    <span>tracking</span>
+  </label>
+
+  <input type="search" id="q" placeholder="Search your history..." autocomplete="off" autofocus>
+  <ul id="results"></ul>
+
+  <button id="blkBtn" title="manage blacklisted sites">🛡 blacklist</button>
+
+  <script src="search.js"></script>
+</body>
+</html>
