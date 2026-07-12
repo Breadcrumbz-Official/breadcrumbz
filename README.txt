@@ -1,3 +1,4 @@
+Built for VSHacks 2026
 Setup instructions:
 
 Judging instructions:
