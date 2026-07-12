@@ -8,7 +8,7 @@ About
 
 
 
-breadcrumbz is Ctrl+F for your browsing history. It scrapes the text of every page you visit, strips the filler, and keeps only the keywords. Forgot a website? Just search whatever you remember - sentences, words, anything - and an AI picks the most relevant keywords, listing every matching site ranked by confidence. All wrapped in a piece of toast
+breadcrumbz is the ultimate "Ctrl+F" for your browsing history - but filled with machine intelligence and hours of painstaking keyword tuning. It scrapes the text of every page you visit, strips the filler, and keeps only the keywords. Forgot a website? Just search whatever you remember - sentences, words, anything - and an AI picks the most relevant keywords, listing every matching site ranked by confidence. All wrapped in a piece of toast
 
 Setup instructions:
 
