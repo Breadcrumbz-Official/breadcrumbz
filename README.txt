@@ -1,5 +1,5 @@
 Built for VSHacks 2026
-
+![Piece of toast with search results](pic.png)
 About
 breadcrumbz is Ctrl+F for your browsing history. It scrapes the text of every page you visit, strips the filler, and keeps only the keywords. Forgot a website? Just search whatever you remember - sentences, words, anything - and an AI picks the most relevant keywords, listing every matching site ranked by confidence. All wrapped in a piece of toast
 
