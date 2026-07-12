@@ -1,7 +1,11 @@
 Built for VSHacks 2026
+
+About
+breadcrumbz is Ctrl+F for your browsing history. It scrapes the text of every page you visit, strips the filler, and keeps only the keywords. Forgot a website? Just search whatever you remember - sentences, words, anything - and an AI picks the most relevant keywords, listing every matching site ranked by confidence. All wrapped in a piece of toast
+
 Setup instructions:
 
-Judging instructions:
+Judges note:
 Please run this project on ONE device only! Our server at this current moment cannot support multiple users - an area for improvement in the future.
 
 For judging, please only use the server files provided to look at the code - please do not run the server on your machine. For your convenience a server is being hosted through cloudflare tunneling, and has been hardcoded in the extension already. Thank you!
