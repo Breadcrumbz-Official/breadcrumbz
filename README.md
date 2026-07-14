@@ -26,6 +26,12 @@ Extension setup instructions:
 6. Click the icon and enjoy! Websites you visit will be scraped and logged, so visit a couple of websites, remember the gist of them, and try to describe them in the search bar! I.E "A website that had people arguing about which soccer player was better - Messi or Ronaldo" For the best results, try to describe the website in a lot of detail, or don't, if you want to see how good our system is ;)
 
 Built by team Sourbroughs
+
+
 Ryan Lee
+
+
 Andriy Savinov
+
+
 Sebastian Caraza Gonzalez
